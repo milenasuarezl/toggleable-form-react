@@ -1,9 +1,9 @@
 import { useState } from "react"
 
 const SignupForm = (props: unknown) => {
-    const [ username, setUsername ] = useState('')
-    const [ password, setPassword ] = useState('')
-    const [ email, setEmail ] = useState('')
+    const [ username, setUsername ] = useState('username')
+    const [ password, setPassword ] = useState('password')
+    const [ email, setEmail ] = useState('Email')
 
     return <>
         <input 
@@ -24,7 +24,9 @@ const SignupForm = (props: unknown) => {
             onChange={(event) => setEmail(event.target.value)}
             placeholder="Email"
         />
-        <button>Submit</button>
+        <div>
+            <button>Submit</button>
+        </div>
         <p>{`For all security reason your values are ${username}, ${password} and ${email}`}</p>
     </>
 }

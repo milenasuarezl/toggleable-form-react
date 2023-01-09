@@ -1,8 +1,8 @@
 import { useState } from "react"
 
 const LoginForm = (props: unknown) => {
-    const [ username, setUsername ] = useState('')
-    const [ password, setPassword ] = useState('')
+    const [ username, setUsername ] = useState('username')
+    const [ password, setPassword ] = useState('password')
 
     return <>
         <input 
@@ -17,7 +17,9 @@ const LoginForm = (props: unknown) => {
             onChange={(event) => setPassword(event.target.value)}
             placeholder="Password"
         />
-        <button>Submit</button>
+        <div>
+            <button>Submit</button>
+        </div>
         <p>{`For all security reason your values are ${username} and ${password}`}</p>
     </>
 }

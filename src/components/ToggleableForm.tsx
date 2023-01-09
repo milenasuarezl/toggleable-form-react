@@ -1,17 +1,31 @@
-import { createElement } from "react"
+import React, { createElement, useState } from "react"
+import { formData } from "../App"
 import ButtonToggle from "./ButtonToggle"
 import FormToggle from "./FormToggle"
 
-const ToggleableForm = ({ options }) => {
-   const currentForm = 0
+
+type ToggleableFormProps = {
+    forms: Array<formData>
+}
+
+const ToggleableForm: React.FC<ToggleableFormProps> = ({ forms }) => {
+   const [currentForm, setCurrentForm] = useState(0)
    const focusRef = 0
 
    return <>
-    { options.map((el, index) => <ButtonToggle key={`button${index}`}>{el.name}</ButtonToggle>)}
+    { forms.map((el: formData, index: number) => 
+        <ButtonToggle 
+            key={`button${index}`}
+            toggleForm={() => setCurrentForm(index)}
+        >{el.name}
+        </ButtonToggle>)
+    }
     <FormToggle currentIndex={currentForm}>
-        { options.map((el, index) => <div key={`form${index}`}>
-            { createElement(el.component, {/* Send something here */})}
-        </div>)}
+        { forms.map((el: formData, index: number) => 
+            <div key={`form${index}`}>
+                { createElement(el.component, {/* Send something here */})}
+            </div>)
+        }
     </FormToggle>
    </>
 }
