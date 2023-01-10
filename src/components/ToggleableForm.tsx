@@ -1,4 +1,4 @@
-import React, { createElement, useState } from "react"
+import React, { createElement, useRef, useState } from "react"
 import { formData } from "../App"
 import ButtonToggle from "./ButtonToggle"
 import FormToggle from "./FormToggle"
@@ -10,7 +10,7 @@ type ToggleableFormProps = {
 
 const ToggleableForm: React.FC<ToggleableFormProps> = ({ forms }) => {
    const [currentForm, setCurrentForm] = useState(0)
-   const focusRef = 0
+   const focusRef = useRef<HTMLInputElement>(null)
 
    return <>
     { forms.map((el: formData, index: number) => 
@@ -23,7 +23,7 @@ const ToggleableForm: React.FC<ToggleableFormProps> = ({ forms }) => {
     <FormToggle currentIndex={currentForm}>
         { forms.map((el: formData, index: number) => 
             <div key={`form${index}`}>
-                { createElement(el.component, {/* Send something here */})}
+                {createElement(el.component, { ref: focusRef })}
             </div>)
         }
     </FormToggle>
